@@ -1,0 +1,19 @@
+<div class="map-filters border d-none">
+   <div class="col-6 d-flex">
+      <span class="p-input-icon-left">
+         <i class="pi pi-search"></i>
+      </span>
+     
+      <span class="p-input-icon-right">
+         <i class="pi pi-spin pi-spinner"></i>
+      </span>
+     </div>
+</div> 
+
+
+<google-map #map height="590px" width="725px" [zoom]="14">
+   <!-- *ngFor="let marker of markers" [position]="marker" -->
+   <map-marker  [position]="center" ></map-marker>
+</google-map>
+
+

@@ -1,0 +1,17 @@
+
+.header{
+    background-color: rgb(227, 228, 228);
+}
+.example-spacer {
+    flex: 1 1 auto;
+   
+}
+
+.full{
+    width: 600px;
+    width: 800px;
+}
+
+.title{
+    margin-left:20px;
+}

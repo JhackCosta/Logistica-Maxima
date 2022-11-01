@@ -1,0 +1,84 @@
+<div class="main">
+    <div class="form">
+        <form [formGroup]="formSelect" id="formsSelect">
+            <h3>Dados do cliente: </h3>
+            <div class="divsEntrada">
+                <label for="codigo">Código: </label>
+                <input formControlName="codigoSelect" class="inputs" type="number">
+            </div> 
+           
+            <div class="divsSubmit">
+                <button (click)="buscarClient()" id= "button" type="submit">Buscar</button>    
+            </div>
+
+            <div class="divsEntrada">
+                <label for="nome">Nome: </label>
+                <input formControlName="nomeSelect" class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="cnpj">CNPJ: </label>
+                <input formControlName="cnpjSelect" class="inputs" type="text">
+            </div>
+
+            <h3>Localização: </h3>
+
+            <div class="divsEntrada">
+                <label for="cep">CEP: </label>
+                <input formControlName="cepSelect" class="inputs" type="text" required>
+            </div>
+
+            <div class="divsEntrada">
+                <label for="endereco">Endereço: </label>
+                <input formControlName="enderecoSelect" class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="bairro">Bairro: </label>
+                <input formControlName="bairroSelect" class="inputs" type="text">
+            </div>
+
+
+            <div class="divsEntrada">
+                <label for="cidade">Cidade: </label>
+                <input formControlName="cidadeSelect" class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="estado">Estado: </label>
+                <input formControlName="estadoSelect" class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="numero">Número: </label>
+                <input formControlName="numeroSelect" class="inputs" type="number">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="complemento">Complemento: </label>
+                <input formControlName="complementoSelect" class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="longitude">Longitude: </label>
+                <input formControlName="longitudeSelect" id="longitude"  class="inputs" type="text">
+            </div>
+
+            <div class="divsEntrada">
+                <label for="latitude">Latitude: </label>
+                <input formControlName="latitudeSelect" id="latitude" class="inputs" type="text">
+            </div>
+
+            <div class="divsSubmit">
+                <button id= "button" (click)="deletar()" type="submit">Deletar</button>    
+            </div>
+
+ 
+        </form>
+
+    </div>
+
+    <div class="map">
+        <app-maps></app-maps>
+    </div>
+</div>
