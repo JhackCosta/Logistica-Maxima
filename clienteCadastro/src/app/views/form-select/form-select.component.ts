@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClienteService } from 'src/app/shared/service/cliente.service';
 
@@ -8,10 +8,9 @@ import { ClienteService } from 'src/app/shared/service/cliente.service';
   styleUrls: ['./form-select.component.css']
 })
 export class FormSelectComponent implements OnInit {
- 
+  
 
   public formSelect: FormGroup = this.formBuilde.group({
-
     codigoSelect:[''],
     nomeSelect:[''],
     cnpjSelect: [''],
@@ -24,11 +23,11 @@ export class FormSelectComponent implements OnInit {
     complementoSelect: [''],
     longitudeSelect: [''],
     latitudeSelect: ['']
-
   }); 
-  private latitude: number | undefined;
-  private longitude: number | undefined;
-  
+
+  public lats!: number;
+  public longs!: number;
+
   constructor(private service: ClienteService, private formBuilde:FormBuilder) { }
 
   public buscarClient(){
@@ -40,8 +39,8 @@ export class FormSelectComponent implements OnInit {
         (data) => {
           if(data != null){
 
-            this.latitude = data.latitude;
-            this.longitude = data.longitude;
+            this.lats = data.endereco.latitude;
+            this.longs = data.endereco.longitude;
 
             this.formSelect.controls["nomeSelect"].setValue(data.nome);
             this.formSelect.controls["cnpjSelect"].setValue(data.cnpj);
@@ -54,6 +53,7 @@ export class FormSelectComponent implements OnInit {
             this.formSelect.controls["complementoSelect"].setValue(data.endereco.complemento);
             this.formSelect.controls["longitudeSelect"].setValue(data.endereco.longitude);
             this.formSelect.controls["latitudeSelect"].setValue(data.endereco.latitude);
+
           }else{
             alert("Cliente não encontrado!")
           }
@@ -63,7 +63,6 @@ export class FormSelectComponent implements OnInit {
         }
       )
     }
-
   }
 
   public deletar(){
@@ -91,14 +90,6 @@ export class FormSelectComponent implements OnInit {
         }
       )
     }
-  }
-
-  public getLatitude(){
-    return this.latitude;
-  }
-
-  public getLongitude(){
-    return this.longitude;
   }
 
   ngOnInit(): void {

@@ -1,35 +1,46 @@
-import {  Component, NgZone, OnInit,  } from '@angular/core';
+import {  Component, Input, NgZone, DoCheck} from '@angular/core';
 
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css']
 })
-export class MapsComponent implements OnInit {
+export class MapsComponent implements DoCheck {
 
-  latitude!: any;
-  longitude!: any;
+  @Input() latitude!: any;
+  @Input() longitude!: any;
  
-  center: google.maps.LatLngLiteral = {
-    lat: -23.55421862284195,
-    lng: -46.808552300189724 
-  };
+  //  latitude: any = document.getElementById("teste1");
+  //  longitude: any = document.getElementById("teste2");
+  // @Input() latitude!: any;
+  // @Input() longitude!:any;
+
+  marker = {
+    position: {
+      //lat: document.getElementById("teste1"), lng: document.getElementById("teste")
+      lat: Number(this.latitude), lng: Number(this.longitude)
+      //lat: -18.99233986242702, lng:-48.263519222702094
+    }
+  }
+
+  mapOptions: google.maps.MapOptions = {
+    // center: { lat: Number(this.latitude), lng: Number(this.longitude)},
+    center: { lat: -18.99233986242702, lng: -48.263519222702094},
+    zoom : 15,
+  }
   
-  constructor(private ngZone: NgZone) {
-    
-  }
+  constructor(private ngZone: NgZone) {}
  
-  ngOnInit(): void {
+  ngDoCheck(): void {
 
-      navigator.geolocation.getCurrentPosition((position) => {
-
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-     });
+    this.marker = {
+      position: {
+        //lat: document.getElementById("teste1"), lng: document.getElementById("teste")
+        lat: Number(this.latitude), lng: Number(this.longitude)
+        //lat: -18.99233986242702, lng:-48.263519222702094
+      },
+    }
   }
-
 }
 
 

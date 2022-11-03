@@ -25,10 +25,18 @@ export class ClienteService{
             
         );
     }
+    
+    // public longLat(numero: number, rua: string):Observable<any>{
 
-    public longLat(numero: number, rua: string):Observable<any>{
+    //     return this.http.get(`https://nominatim.openstreetmap.org/search?street=${numero},${rua}&format=json&limit=1`)
+    //         .pipe(map((response: any) => response),
+    //         catchError((erro: HttpErrorResponse) => throwError(erro))
 
-        return this.http.get(`https://nominatim.openstreetmap.org/search?street=${numero},${rua}&format=json&limit=1`)
+    //     );
+    // }
+
+    public selectGeolocalizacaoAPIGoogle(numero: number, rua: string, bairro:string, cidade: string, uf: string):Observable<any>{
+        return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rua}+${numero}+${bairro}+${cidade}+${uf}+&key=AIzaSyAjtU8Srk8RCTJi_HnFwuIBA2W0HY9MMmM`)
             .pipe(map((response: any) => response),
             catchError((erro: HttpErrorResponse) => throwError(erro))
 

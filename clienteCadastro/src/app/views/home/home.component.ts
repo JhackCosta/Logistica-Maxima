@@ -31,8 +31,7 @@ export class HomeComponent implements OnInit {
 
   public buscarCep(){
     let cep: string = this.form.value.cep
-    
-
+  
     if(cep.includes("-") || cep.includes("_") || cep.includes(".") ){
       cep = cep.replace("-","");
       cep = cep.replace("_","");
@@ -42,7 +41,8 @@ export class HomeComponent implements OnInit {
     if(cep.length === 8){
       this.service.buscarCep(this.form.value.cep).subscribe(
         (data) => {
-
+          console.log(data);
+          
           this.form.controls["endereco"].setValue(data.logradouro);
           this.form.controls["bairro"].setValue(data.bairro);
           this.form.controls["cidade"].setValue(data.localidade);
@@ -60,12 +60,15 @@ export class HomeComponent implements OnInit {
 
     const end: string = this.form.value.endereco;
     const numero: number = this.form.value.numero;
+    const bairro: string = this.form.value.bairro;
+    const cidade: string = this.form.value.cidade;
+    const uf: string = this.form.value.estado;
 
-    this.service.longLat(numero, end).subscribe(
+    this.service.selectGeolocalizacaoAPIGoogle(numero, end,bairro,cidade,uf).subscribe(
       (data)=>{
-
+      
         if(this.verificar()){
-          this.salvarEntity(data[0].lat, data[0].lon);
+          this.salvarEntity(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
         }
       },
       (erro)=>{
@@ -100,10 +103,7 @@ export class HomeComponent implements OnInit {
       (erro)=>{
         console.log(erro);
       }
-
     )
-
-    
   }
 
   public verificar(){
@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.form.valueChanges.subscribe(data => console.log(data)); 
+    this.form.valueChanges.subscribe(data => console.log(data)); 
     
   }
 
