@@ -10,10 +10,10 @@
      </div>
 </div> 
 
-
-<google-map #map height="590px" width="725px" [zoom]="14">
+<google-map #map height="600px" width="800px" [zoom]="14" [options]="mapOptions" >
    <!-- *ngFor="let marker of markers" [position]="marker" -->
-   <map-marker  [position]="center" ></map-marker>
+   <!-- [position]="marker.position -->
+   <map-marker [position]="marker.position" ></map-marker>
 </google-map>
 
 
